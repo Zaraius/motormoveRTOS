@@ -1,0 +1,5 @@
+C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/mc_tasks_sixstep.c:386:13:SIX_STEP_Clear	16	static
+C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/mc_tasks_sixstep.c:114:13:SIX_STEP_Init	8	static
+C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/mc_tasks_sixstep.c:156:6:TSK_MF_StopProcessing	8	static
+C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/mc_tasks_sixstep.c:171:13:TSK_MediumFrequencyTaskM1	16	static
+C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/mc_tasks_sixstep.c:418:13:TSK_SpeedTIM_task	8	static

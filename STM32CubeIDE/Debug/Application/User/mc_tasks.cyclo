@@ -1,0 +1,11 @@
+C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/mc_tasks.c:77:13:MCboot	2
+C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/mc_tasks.c:232:13:TSK_SetChargeBootCapDelayM1	1
+C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/mc_tasks.c:243:13:TSK_ChargeBootCapDelayHasElapsedM1	1
+C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/mc_tasks.c:259:13:TSK_SetStopPermanencyTimeM1	1
+C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/mc_tasks.c:270:13:TSK_StopPermanencyTimeHasElapsedM1	1
+C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/mc_tasks.c:308:13:TSK_SafetyTask_PWMOFF	3
+C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/mc_tasks.c:285:13:TSK_SafetyTask	2
+C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/mc_tasks.c:145:13:MC_RunMotorControlTasks	7
+C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/mc_tasks.c:366:13:TSK_HardwareFaultTask	1
+C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/mc_tasks.c:379:13:UI_HandleStartStopButton_cb	2
+C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/mc_tasks.c:397:13:mc_lock_pins	1
