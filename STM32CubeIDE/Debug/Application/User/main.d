@@ -19,14 +19,21 @@ Application/User/main.o: \
  ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h \
  ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma_ex.h \
  ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h \
+ ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc.h \
+ ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_adc.h \
+ ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc_ex.h \
  ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_exti.h \
  ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash.h \
  ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ex.h \
  ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ramfunc.h \
+ ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c.h \
+ ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c_ex.h \
  ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr.h \
  ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h \
  ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h \
  ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h \
+ ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h \
+ ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
  ../../Inc/motorcontrol.h ../../Inc/mc_config.h \
  ../../Inc/speed_duty_ctrl.h ../../Inc/mc_type.h ../../Inc/mc_stm_types.h \
  ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_bus.h \
@@ -58,16 +65,14 @@ Application/User/main.o: \
  ../../MCSDK_v6.4.2-Full/MotorControl/MCSDK/MCLib/Any/Inc/r_divider_bus_voltage_sensor.h \
  ../../Inc/regular_conversion_manager.h \
  ../../MCSDK_v6.4.2-Full/MotorControl/MCSDK/MCLib/Any/Inc/virtual_bus_voltage_sensor.h \
- ../../Inc/bemf_ADC_fdbk_sixstep.h \
+ ../../MCSDK_v6.4.2-Full/MotorControl/MCSDK/MCLib/Any/Inc/speed_potentiometer.h \
+ ../../MCSDK_v6.4.2-Full/MotorControl/MCSDK/MCLib/Any/Inc/potentiometer.h \
+ ../../Inc/mc_interface.h ../../Inc/bemf_ADC_fdbk_sixstep.h \
  ../../MCSDK_v6.4.2-Full/MotorControl/MCSDK/MCLib/Any/Inc/bus_voltage_sensor.h \
  ../../Inc/parameters_conversion.h ../../Inc/mc_math.h \
  ../../Inc/parameters_conversion_g4xx.h ../../Inc/drive_parameters.h \
  ../../Inc/power_stage_parameters.h ../../Inc/pmsm_motor_parameters.h \
  ../../Inc/mc_api.h \
- ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_crs.h \
- ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_exti.h \
- ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_utils.h \
- ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_pwr.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  ../../Inc/FreeRTOSConfig.h \
@@ -79,8 +84,7 @@ Application/User/main.o: \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
- ../../Inc/mc_interface.h ../../Inc/motorcontrol.h ../../Inc/mc_tasks.h \
- ../../Inc/mc_parameters.h
+ ../../Inc/motorcontrol.h ../../Inc/mc_tasks.h ../../Inc/mc_parameters.h
 ../../Inc/main.h:
 ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
 ../../Inc/stm32g4xx_hal_conf.h:
@@ -101,14 +105,21 @@ Application/User/main.o: \
 ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h:
 ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma_ex.h:
 ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h:
+../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc.h:
+../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_adc.h:
+../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc_ex.h:
 ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_exti.h:
 ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash.h:
 ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ex.h:
 ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ramfunc.h:
+../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c.h:
+../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c_ex.h:
 ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr.h:
 ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h:
 ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h:
 ../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h:
+../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h:
+../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h:
 ../../Inc/motorcontrol.h:
 ../../Inc/mc_config.h:
 ../../Inc/speed_duty_ctrl.h:
@@ -145,6 +156,9 @@ Application/User/main.o: \
 ../../MCSDK_v6.4.2-Full/MotorControl/MCSDK/MCLib/Any/Inc/r_divider_bus_voltage_sensor.h:
 ../../Inc/regular_conversion_manager.h:
 ../../MCSDK_v6.4.2-Full/MotorControl/MCSDK/MCLib/Any/Inc/virtual_bus_voltage_sensor.h:
+../../MCSDK_v6.4.2-Full/MotorControl/MCSDK/MCLib/Any/Inc/speed_potentiometer.h:
+../../MCSDK_v6.4.2-Full/MotorControl/MCSDK/MCLib/Any/Inc/potentiometer.h:
+../../Inc/mc_interface.h:
 ../../Inc/bemf_ADC_fdbk_sixstep.h:
 ../../MCSDK_v6.4.2-Full/MotorControl/MCSDK/MCLib/Any/Inc/bus_voltage_sensor.h:
 ../../Inc/parameters_conversion.h:
@@ -154,10 +168,6 @@ Application/User/main.o: \
 ../../Inc/power_stage_parameters.h:
 ../../Inc/pmsm_motor_parameters.h:
 ../../Inc/mc_api.h:
-../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_crs.h:
-../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_exti.h:
-../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_utils.h:
-../../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_pwr.h:
 ../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h:
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../../Inc/FreeRTOSConfig.h:
@@ -169,7 +179,6 @@ Application/User/main.o: \
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
 ../../Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
 ../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:
-../../Inc/mc_interface.h:
 ../../Inc/motorcontrol.h:
 ../../Inc/mc_tasks.h:
 ../../Inc/mc_parameters.h:

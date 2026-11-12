@@ -40,6 +40,7 @@
         <define key="HW_COMPLEMENTED_LOW_SIDE" value="ENABLE" />
         <define key="HW_DEAD_TIME_NS" value="550" />
         <define key="HWV_DP" value="SingleErrorTrigger_FixedReference" />
+        <define key="HWV_POTENTIOMETER" value="Potentiometer" />
         <define key="HWV_PWM" value="DrivingHighSidesAndThreeEnables" />
         <define key="LF_TIMER_SELECTION" value="LF_TIM2" />
         <define key="LOW_MEMORY_FOOTPRINT_REG" value="FALSE" />
@@ -115,7 +116,7 @@
         <define key="M1_PID_SPEED_KI_DEFAULT" value="238" />
         <define key="M1_PID_SPEED_KP_DEFAULT" value="2316" />
         <define key="M1_POLE_PAIR_NUM" value="7" />
-        <define key="M1_POTENTIOMETER_ENABLE" value="FALSE" />
+        <define key="M1_POTENTIOMETER_ENABLE" value="TRUE" />
         <define key="M1_POWERBOARD_NAME" value="X-NUCLEO-IHM16M1" />
         <define key="M1_PWM_CHARGE_BOOT_CAP_DUTY_CYCLES" value="0.000" />
         <define key="M1_PWM_CHARGE_BOOT_CAP_MS" value="10" />
@@ -215,7 +216,12 @@
         <define key="PHASE_WL_GPIO_PIN" value="GPIO_Pin_15" />
         <define key="PHASE_WL_GPIO_PORT" value="GPIOB" />
         <define key="PHASE_WL_POLARITY" value="L_ACTIVE_HIGH" />
-        <define key="POTENTIOMETER_READING" value="FALSE" />
+        <define key="POTENTIOMETER_ADC" value="ADC1" />
+        <define key="POTENTIOMETER_ADC_SAMPLING_TIME" value="47" />
+        <define key="POTENTIOMETER_CHANNEL" value="ADC_Channel_8" />
+        <define key="POTENTIOMETER_GPIO_PIN" value="GPIO_Pin_2" />
+        <define key="POTENTIOMETER_GPIO_PORT" value="GPIOC" />
+        <define key="POTENTIOMETER_READING" value="TRUE" />
         <define key="PWM_FREQUENCY" value="15000" />
         <define key="PWM_TIMER_SELECTION" value="PWM_TIM1" />
         <define key="QUASI_SYNC" value="FALSE" />
