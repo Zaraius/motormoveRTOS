@@ -884,19 +884,12 @@ static void MX_GPIO_Init(void)
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void *argument)
 {
-    uint32_t tick = 0;
-    for(;;)
-    {
-        MC_RunMotorControlTasks();
-
-        uint32_t blink_rate = motor_running ? 100 : 500;
-        if (tick % blink_rate == 0) {
-            LL_GPIO_TogglePin(LED_STATUS_GPIO_Port, LED_STATUS_Pin);
-        }
-
-        tick++;
-        osDelay(1);
-    }
+  /* USER CODE BEGIN 5 */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
   /* USER CODE END 5 */
 }
 
@@ -976,28 +969,12 @@ void StartTask02(void *argument)
 /* USER CODE END Header_StartTask03 */
 void StartTask03(void *argument)
 {
-    char msg[128];
-    uint32_t tick = 0;
-    for(;;)
-    {
-        if(motor_running && (tick % 4 == 0))
-        {
-            int16_t rpm = MC_GetMecSpeedAverageMotor1() * 6;
-            uint16_t faults = MC_GetOccurredFaultsMotor1();
-//            uint16_t vbus = MC_GetBusVoltage_V_Motor1();
-            int16_t target  = MC_GetMecSpeedReferenceMotor1() * 6;
-
-            sprintf(msg, "[%lu] Speed: %d RPM | Target: %d RPM\r\n",
-                    tick, rpm, target);
-
-            for(int i = 0; msg[i] != '\0'; i++) {
-                while(!LL_USART_IsActiveFlag_TXE(USART2)) {}
-                LL_USART_TransmitData8(USART2, msg[i]);
-            }
-        }
-        tick++;
-        osDelay(250);
-    }
+  /* USER CODE BEGIN StartTask03 */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
   /* USER CODE END StartTask03 */
 }
 
@@ -1019,6 +996,12 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */
+
+  // Add this block to run the Motor Control state machine every 1ms
+  if (htim->Instance == TIM6)
+  {
+    MC_RunMotorControlTasks();
+  }
 
   /* USER CODE END Callback 1 */
 }

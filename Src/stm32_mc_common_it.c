@@ -59,7 +59,7 @@
 
 void EXTI15_10_IRQHandler(void);
 void HardFault_Handler(void);
-void SysTick_Handler(void);
+//void SysTick_Handler(void);
 
 /* This section is present only when MCP over UART_A is used */
 /**
@@ -164,47 +164,47 @@ void HardFault_Handler(void)
  /* USER CODE END HardFault_IRQn 1 */
 }
 
-void SysTick_Handler_OLD(void)
-{
-#ifdef MC_HAL_IS_USED
-static uint8_t SystickDividerCounter = SYSTICK_DIVIDER;
-  /* USER CODE BEGIN SysTick_IRQn 0 */
-
-  /* USER CODE END SysTick_IRQn 0 */
-  if (SystickDividerCounter == SYSTICK_DIVIDER)
-  {
-    HAL_IncTick();
-    HAL_SYSTICK_IRQHandler();
-    SystickDividerCounter = 0;
-  }
-  else
-  {
-    /* Nothing to do */
-  }
-
-  SystickDividerCounter ++;
-#endif /* MC_HAL_IS_USED */
-  /* Buffer is ready by the HW layer to be processed */
-  /* NO DMA interrupt */
-  if (LL_DMA_IsActiveFlag_TC(DMA_RX_A, DMACH_RX_A))
-  {
-    LL_DMA_ClearFlag_TC(DMA_RX_A, DMACH_RX_A);
-    ASPEP_HWDataReceivedIT(&aspepOverUartA);
-  }
-  else
-  {
-    /* Nothing to do */
-  }
-  /* USER CODE BEGIN SysTick_IRQn 1 */
-
-  /* USER CODE END SysTick_IRQn 1 */
-
-    MC_RunMotorControlTasks();
-
-  /* USER CODE BEGIN SysTick_IRQn 2 */
-
-  /* USER CODE END SysTick_IRQn 2 */
-}
+//void SysTick_Handler(void)
+//{
+//#ifdef MC_HAL_IS_USED
+//static uint8_t SystickDividerCounter = SYSTICK_DIVIDER;
+//  /* USER CODE BEGIN SysTick_IRQn 0 */
+//
+//  /* USER CODE END SysTick_IRQn 0 */
+//  if (SystickDividerCounter == SYSTICK_DIVIDER)
+//  {
+//    HAL_IncTick();
+//    HAL_SYSTICK_IRQHandler();
+//    SystickDividerCounter = 0;
+//  }
+//  else
+//  {
+//    /* Nothing to do */
+//  }
+//
+//  SystickDividerCounter ++;
+//#endif /* MC_HAL_IS_USED */
+//  /* Buffer is ready by the HW layer to be processed */
+//  /* NO DMA interrupt */
+//  if (LL_DMA_IsActiveFlag_TC(DMA_RX_A, DMACH_RX_A))
+//  {
+//    LL_DMA_ClearFlag_TC(DMA_RX_A, DMACH_RX_A);
+//    ASPEP_HWDataReceivedIT(&aspepOverUartA);
+//  }
+//  else
+//  {
+//    /* Nothing to do */
+//  }
+//  /* USER CODE BEGIN SysTick_IRQn 1 */
+//
+//  /* USER CODE END SysTick_IRQn 1 */
+//
+//    MC_RunMotorControlTasks();
+//
+//  /* USER CODE BEGIN SysTick_IRQn 2 */
+//
+//  /* USER CODE END SysTick_IRQn 2 */
+//}
 
 /**
   * @brief  This function handles Button IRQ on PIN PC13.
