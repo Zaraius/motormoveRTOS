@@ -51,7 +51,7 @@
 ADC_HandleTypeDef hadc1;
 ADC_HandleTypeDef hadc2;
 
-I2C_HandleTypeDef hi2c1;
+I2C_HandleTypeDef hi2c3;
 
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
@@ -95,15 +95,15 @@ static void MX_ADC1_Init(void);
 static void MX_ADC2_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_TIM2_Init(void);
-static void MX_I2C1_Init(void);
 static void MX_USART1_UART_Init(void);
+static void MX_I2C3_Init(void);
 void StartDefaultTask(void *argument);
 void StartTask02(void *argument);
 void StartTask03(void *argument);
 
 static void MX_NVIC_Init(void);
 /* USER CODE BEGIN PFP */
-void writeLCDText(char* text);
+void writeLCDText(char *line1, char *line2);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -145,8 +145,8 @@ int main(void)
   MX_TIM1_Init();
   MX_TIM2_Init();
   MX_MotorControl_Init();
-  MX_I2C1_Init();
   MX_USART1_UART_Init();
+  MX_I2C3_Init();
 
   /* Initialize interrupts */
   MX_NVIC_Init();
@@ -501,50 +501,50 @@ static void MX_ADC2_Init(void)
 }
 
 /**
-  * @brief I2C1 Initialization Function
+  * @brief I2C3 Initialization Function
   * @param None
   * @retval None
   */
-static void MX_I2C1_Init(void)
+static void MX_I2C3_Init(void)
 {
 
-  /* USER CODE BEGIN I2C1_Init 0 */
+  /* USER CODE BEGIN I2C3_Init 0 */
 
-  /* USER CODE END I2C1_Init 0 */
+  /* USER CODE END I2C3_Init 0 */
 
-  /* USER CODE BEGIN I2C1_Init 1 */
+  /* USER CODE BEGIN I2C3_Init 1 */
 
-  /* USER CODE END I2C1_Init 1 */
-  hi2c1.Instance = I2C1;
-  hi2c1.Init.Timing = 0x40B285C2;
-  hi2c1.Init.OwnAddress1 = 0;
-  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-  hi2c1.Init.OwnAddress2 = 0;
-  hi2c1.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
-  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
-  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+  /* USER CODE END I2C3_Init 1 */
+  hi2c3.Instance = I2C3;
+  hi2c3.Init.Timing = 0x40B285C2;
+  hi2c3.Init.OwnAddress1 = 0;
+  hi2c3.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c3.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c3.Init.OwnAddress2 = 0;
+  hi2c3.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
+  hi2c3.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c3.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c3) != HAL_OK)
   {
     Error_Handler();
   }
 
   /** Configure Analogue filter
   */
-  if (HAL_I2CEx_ConfigAnalogFilter(&hi2c1, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
+  if (HAL_I2CEx_ConfigAnalogFilter(&hi2c3, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
   {
     Error_Handler();
   }
 
   /** Configure Digital filter
   */
-  if (HAL_I2CEx_ConfigDigitalFilter(&hi2c1, 0) != HAL_OK)
+  if (HAL_I2CEx_ConfigDigitalFilter(&hi2c3, 0) != HAL_OK)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN I2C1_Init 2 */
+  /* USER CODE BEGIN I2C3_Init 2 */
 
-  /* USER CODE END I2C1_Init 2 */
+  /* USER CODE END I2C3_Init 2 */
 
 }
 
@@ -801,19 +801,27 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void writeLCDText(char *text)
+void writeLCDText(char *line1, char *line2)
 {
     uint8_t clear_cmd[] = {0xFE, 0x01};
     uint8_t home_cmd[]  = {0xFE, 0x80};
+    uint8_t line2_cmd[] = {0xFE, 0xC0};
 
-    HAL_I2C_Master_Transmit(&hi2c1, SERLCD_WRITE_ADDR, clear_cmd, 2, HAL_MAX_DELAY);
+    // Clear Screen
+    HAL_I2C_Master_Transmit(&hi2c3, SERLCD_WRITE_ADDR, clear_cmd, 2, HAL_MAX_DELAY);
     HAL_Delay(1);
 
-    HAL_I2C_Master_Transmit(&hi2c1, SERLCD_WRITE_ADDR, home_cmd, 2, HAL_MAX_DELAY);
+    // Write Line 1
+    HAL_I2C_Master_Transmit(&hi2c3, SERLCD_WRITE_ADDR, home_cmd, 2, HAL_MAX_DELAY);
     HAL_Delay(1);
+    HAL_I2C_Master_Transmit(&hi2c3, SERLCD_WRITE_ADDR, (uint8_t*)line1, strlen(line1), HAL_MAX_DELAY);
 
-    HAL_I2C_Master_Transmit(&hi2c1, SERLCD_WRITE_ADDR, text, strlen(text), HAL_MAX_DELAY
-    );
+    // Write Line 2 (If provided)
+    if (line2 != NULL) {
+        HAL_I2C_Master_Transmit(&hi2c3, SERLCD_WRITE_ADDR, line2_cmd, 2, HAL_MAX_DELAY);
+        HAL_Delay(1);
+        HAL_I2C_Master_Transmit(&hi2c3, SERLCD_WRITE_ADDR, (uint8_t*)line2, strlen(line2), HAL_MAX_DELAY);
+    }
 }
 /* USER CODE END 4 */
 
@@ -877,18 +885,26 @@ void StartTask02(void *argument)
 void StartTask03(void *argument)
 {
   /* USER CODE BEGIN StartTask03 */
-  char lcd_buffer[16];
+  char line1_buf[17];
+  char line2_buf[17];
 
   for(;;)
   {
-    // Fetch the true mechanical speed directly from the ST Motor API
+    // 1. Get the Potentiometer Target (Reference) Speed
+    int16_t target_speed = MC_GetMecSpeedReferenceMotor1();
+
+    // 2. Get the Actual Mechanical Speed
     int16_t actual_speed = MC_GetMecSpeedAverageMotor1();
 
-    // The spaces at the end ensure old ghost characters are overwritten
-    sprintf(lcd_buffer, "Spd: %-6d    ", actual_speed);
-    writeLCDText(lcd_buffer);
+    // 3. Format strings. The extra spaces ensure old ghost digits are wiped out.
+    sprintf(line1_buf, "Tgt: %-5d       ", target_speed);
+    sprintf(line2_buf, "Act: %-5d       ", actual_speed);
 
-    osDelay(200); // 5 frames per second
+    // 4. Send to the two-line display function
+    writeLCDText(line1_buf, line2_buf);
+
+    // Update at 5 frames per second
+    osDelay(200);
   }
   /* USER CODE END StartTask03 */
 }
