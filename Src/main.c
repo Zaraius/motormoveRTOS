@@ -882,33 +882,56 @@ void StartTask02(void *argument)
 * @retval None
 */
 /* USER CODE END Header_StartTask03 */
+//void StartTask03(void *argument)
+//{
+//  /* USER CODE BEGIN StartTask03 */
+//  char line1_buf[17];
+//  char line2_buf[17];
+//
+//  for(;;)
+//  {
+//    // 1. Get the Potentiometer Target (Reference) Speed
+//    int16_t target_speed = MC_GetMecSpeedReferenceMotor1();
+//
+//    // 2. Get the Actual Mechanical Speed
+//    int16_t actual_speed = MC_GetMecSpeedAverageMotor1();
+//
+//    // 3. Format strings. The extra spaces ensure old ghost digits are wiped out.
+//    sprintf(line1_buf, "Target: %-3d       ", target_speed);
+//    sprintf(line2_buf, "Actual: %-3d       ", actual_speed);
+//
+//    // 4. Send to the two-line display function
+//    writeLCDText(line1_buf, line2_buf);
+//
+//    // Update at 2 frames per second
+//    osDelay(500);
+//  }
+//  /* USER CODE END StartTask03 */
+//}
 void StartTask03(void *argument)
 {
-  /* USER CODE BEGIN StartTask03 */
   char line1_buf[17];
   char line2_buf[17];
 
   for(;;)
   {
-    // 1. Get the Potentiometer Target (Reference) Speed
     int16_t target_speed = MC_GetMecSpeedReferenceMotor1();
-
-    // 2. Get the Actual Mechanical Speed
     int16_t actual_speed = MC_GetMecSpeedAverageMotor1();
+    uint16_t current_faults = MC_GetCurrentFaultsMotor1(); // Read the fault state
 
-    // 3. Format strings. The extra spaces ensure old ghost digits are wiped out.
-    sprintf(line1_buf, "Tgt: %-5d       ", target_speed);
-    sprintf(line2_buf, "Act: %-5d       ", actual_speed);
+    sprintf(line1_buf, "Target: %-3d       ", target_speed);
 
-    // 4. Send to the two-line display function
+    if (current_faults != 0) {
+        // If a fault exists, print its Hex code instead of the actual speed
+        sprintf(line2_buf, "Fault: 0x%04X   ", current_faults);
+    } else {
+        sprintf(line2_buf, "Actual: %-3d       ", actual_speed);
+    }
+
     writeLCDText(line1_buf, line2_buf);
-
-    // Update at 5 frames per second
-    osDelay(200);
+    osDelay(400);
   }
-  /* USER CODE END StartTask03 */
 }
-
 /**
   * @brief  Period elapsed callback in non blocking mode
   * @note   This function is called  when TIM6 interrupt took place, inside

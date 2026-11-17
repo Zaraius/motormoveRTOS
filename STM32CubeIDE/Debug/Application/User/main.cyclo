@@ -3,6 +3,6 @@ C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/main.c:853:6:Star
 C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/main.c:227:6:SystemClock_Config	3
 C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/main.c:118:5:main	31
 C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/main.c:804:6:writeLCDText	2
-C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/main.c:885:6:StartTask03	1
-C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/main.c:920:6:HAL_TIM_PeriodElapsedCallback	3
-C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/main.c:941:6:Error_Handler	1
+C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/main.c:911:6:StartTask03	2
+C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/main.c:943:6:HAL_TIM_PeriodElapsedCallback	3
+C:/Users/zbilimoria/.st_workbench/projects/motormove6-step/Src/main.c:964:6:Error_Handler	1

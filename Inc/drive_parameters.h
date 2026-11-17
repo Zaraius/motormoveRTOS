@@ -73,7 +73,7 @@
 
 /* Speed control loop */
 #define SPEED_LOOP_FREQUENCY_HZ            (uint16_t)1000 /*!<Execution rate of speed regulation loop (Hz) */
-#define PID_SPEED_KP_DEFAULT               2316/(SPEED_UNIT/10) /* Workbench compute the gain for 01Hz unit*/
+#define PID_SPEED_KP_DEFAULT               3500/(SPEED_UNIT/10) /* 2316Workbench compute the gain for 01Hz unit*/
 #define PID_SPEED_KI_DEFAULT               238/(SPEED_UNIT/10) /* Workbench compute the gain for 01Hz unit*/
 #define PID_SPEED_KD_DEFAULT               0/(SPEED_UNIT/10) /* Workbench compute the gain for 01Hz unit*/
 
