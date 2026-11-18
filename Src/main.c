@@ -85,7 +85,7 @@ const osMessageQueueAttr_t TelemetryQueue_attributes = {
   .name = "TelemetryQueue"
 };
 /* USER CODE BEGIN PV */
-volatile bool motor_running = false;
+volatile bool motor_running = true;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -809,19 +809,17 @@ void writeLCDText(char *line1, char *line2)
 
     // Clear Screen
     HAL_I2C_Master_Transmit(&hi2c3, SERLCD_WRITE_ADDR, clear_cmd, 2, HAL_MAX_DELAY);
-    HAL_Delay(1);
+//    HAL_Delay(1);
 
     // Write Line 1
     HAL_I2C_Master_Transmit(&hi2c3, SERLCD_WRITE_ADDR, home_cmd, 2, HAL_MAX_DELAY);
-    HAL_Delay(1);
+//    HAL_Delay(1);
     HAL_I2C_Master_Transmit(&hi2c3, SERLCD_WRITE_ADDR, (uint8_t*)line1, strlen(line1), HAL_MAX_DELAY);
 
-    // Write Line 2 (If provided)
-    if (line2 != NULL) {
-        HAL_I2C_Master_Transmit(&hi2c3, SERLCD_WRITE_ADDR, line2_cmd, 2, HAL_MAX_DELAY);
-        HAL_Delay(1);
-        HAL_I2C_Master_Transmit(&hi2c3, SERLCD_WRITE_ADDR, (uint8_t*)line2, strlen(line2), HAL_MAX_DELAY);
-    }
+    // Write Line 2
+	HAL_I2C_Master_Transmit(&hi2c3, SERLCD_WRITE_ADDR, line2_cmd, 2, HAL_MAX_DELAY);
+//	HAL_Delay(1);
+	HAL_I2C_Master_Transmit(&hi2c3, SERLCD_WRITE_ADDR, (uint8_t*)line2, strlen(line2), HAL_MAX_DELAY);
 }
 /* USER CODE END 4 */
 
@@ -915,21 +913,26 @@ void StartTask03(void *argument)
 
   for(;;)
   {
-    int16_t target_speed = MC_GetMecSpeedReferenceMotor1();
+
+	int16_t target_speed;
     int16_t actual_speed = MC_GetMecSpeedAverageMotor1();
     uint16_t current_faults = MC_GetCurrentFaultsMotor1(); // Read the fault state
-
-    sprintf(line1_buf, "Target: %-3d       ", target_speed);
+    if(motor_running) {
+        target_speed = MC_GetMecSpeedReferenceMotor1();
+    } else {
+    	target_speed = 0;
+    }
+    sprintf(line1_buf, "Target: %-3d     ", target_speed);
 
     if (current_faults != 0) {
         // If a fault exists, print its Hex code instead of the actual speed
-        sprintf(line2_buf, "Fault: 0x%04X   ", current_faults);
+        sprintf(line2_buf, "Fault: 0x%04X  ", current_faults);
     } else {
-        sprintf(line2_buf, "Actual: %-3d       ", actual_speed);
+        sprintf(line2_buf, "Actual: %-3d     ", actual_speed);
     }
 
     writeLCDText(line1_buf, line2_buf);
-    osDelay(400);
+    osDelay(250);
   }
 }
 /**
