@@ -809,16 +809,16 @@ void writeLCDText(char *line1, char *line2)
 
     // Clear Screen
     HAL_I2C_Master_Transmit(&hi2c3, SERLCD_WRITE_ADDR, clear_cmd, 2, HAL_MAX_DELAY);
-//    HAL_Delay(1);
+    HAL_Delay(1);
 
     // Write Line 1
     HAL_I2C_Master_Transmit(&hi2c3, SERLCD_WRITE_ADDR, home_cmd, 2, HAL_MAX_DELAY);
-//    HAL_Delay(1);
+    HAL_Delay(1);
     HAL_I2C_Master_Transmit(&hi2c3, SERLCD_WRITE_ADDR, (uint8_t*)line1, strlen(line1), HAL_MAX_DELAY);
 
     // Write Line 2
 	HAL_I2C_Master_Transmit(&hi2c3, SERLCD_WRITE_ADDR, line2_cmd, 2, HAL_MAX_DELAY);
-//	HAL_Delay(1);
+	HAL_Delay(1);
 	HAL_I2C_Master_Transmit(&hi2c3, SERLCD_WRITE_ADDR, (uint8_t*)line2, strlen(line2), HAL_MAX_DELAY);
 }
 /* USER CODE END 4 */
